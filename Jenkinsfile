@@ -14,9 +14,9 @@ pipeline {
         }
         stage('Docker') {
             steps {
-                sh 'docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
-                sh 'docker build . -t yaswanth21/prt-task'
-                sh 'docker push yaswanth21/prt-task'
+                sh 'sudo docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
+                sh 'sudo docker build /home/ubuntu/jenkins/workspace/Test-PRT-Pipeline/ -t yaswanth21/prt-task'
+                sh 'sudo docker push yaswanth21/prt-task'
             }
         }
         stage('K8s') {
