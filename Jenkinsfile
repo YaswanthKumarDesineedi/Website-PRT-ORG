@@ -1,7 +1,6 @@
 pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dhubcred')
-        DOCKER_BUILDKIT = '1'  // Enable BuildKit to avoid legacy builder warning
     }
     agent {
         label 'K-M'
@@ -9,13 +8,13 @@ pipeline {
     stages {
         stage('Git') {
             steps {
-                git url: 'https://github.com/YaswanthKumarDesineedi/Website-PRT-ORG.git', branch: 'main'
+                git url: 'https://github.com/YaswanthKumarDesineedi/Website-PRT-ORG', branch: 'main'
             }
         }
         stage('Docker') {
             steps {
                 sh 'sudo docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}'
-                sh 'sudo docker build /home/ubuntu/jenkins/workspace/Test-PRT-Pipeline/ -t yaswanth21/prt-task'
+                sh 'sudo docker build /home/ubuntu/jenkins/workspace/Test-Prt -t yaswanth21/prt-task'
                 sh 'sudo docker push yaswanth21/prt-task'
             }
         }
@@ -26,4 +25,5 @@ pipeline {
             }
         }
     }
+}
 }
