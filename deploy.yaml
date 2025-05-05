@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: mydeploymentcont
-        image: yaswanth/prt-task:latest
+        image: yaswanth21/prt-task:latest
         ports:
         - containerPort: 80
